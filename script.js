@@ -84,19 +84,35 @@ tabBtns.forEach(btn => {
 // 初始化移动端显示状态
 function initMobileView() {
     if (window.innerWidth <= 768) {
+        // 移除所有active类
         sidebar.classList.remove('active');
-        chatSection.classList.add('active');
+        chatSection.classList.remove('active');
         outputSection.classList.remove('active');
+
+        // 获取当前激活的标签按钮
+        const activeTab = document.querySelector('.tab-btn.active');
+        if (activeTab) {
+            const tab = activeTab.dataset.tab;
+            if (tab === 'sidebar') {
+                sidebar.classList.add('active');
+            } else if (tab === 'chat') {
+                chatSection.classList.add('active');
+            } else if (tab === 'output') {
+                outputSection.classList.add('active');
+            }
+        }
     }
 }
 
 // 监听窗口大小变化
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
+        // 桌面端：移除所有active类
+        sidebar.classList.remove('active');
         chatSection.classList.remove('active');
         outputSection.classList.remove('active');
     } else {
-        // 保持当前选中的标签
+        // 移动端：保持当前选中的标签
         const activeTab = document.querySelector('.tab-btn.active');
         if (activeTab) {
             activeTab.click();
