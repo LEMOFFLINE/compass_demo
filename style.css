@@ -467,17 +467,6 @@ body {
     .output-section {
         width: 100%;
         flex: none;
-    }
-
-    .sidebar {
-        display: none;
-    }
-
-    .chat-section {
-        display: flex;
-    }
-
-    .output-section {
         display: none;
     }
 
